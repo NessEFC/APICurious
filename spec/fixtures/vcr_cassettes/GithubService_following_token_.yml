@@ -1,0 +1,76 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.github.com/user/following?access_token=<GITHUB_TOKEN>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Thu, 11 May 2017 17:32:36 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4998'
+      X-Ratelimit-Reset:
+      - '1494527295'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      - Accept-Encoding
+      Etag:
+      - W/"48932c299cc4b9ed20c67eeaac1a3f48"
+      X-Oauth-Scopes:
+      - repo
+      X-Accepted-Oauth-Scopes:
+      - ''
+      X-Oauth-Client-Id:
+      - "<GITHUB_CLIENT_ID>"
+      X-Github-Media-Type:
+      - github.v3; format=json
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Security-Policy:
+      - default-src 'none'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - deny
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Served-By:
+      - 15bc4ab707db6d6b474783868c7cc828
+      X-Github-Request-Id:
+      - F2D3:3FFB:818586C:A147426:5914A034
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"login":"samlandfried","id":14250133,"avatar_url":"https://avatars2.githubusercontent.com/u/14250133?v=3","gravatar_id":"","url":"https://api.github.com/users/samlandfried","html_url":"https://github.com/samlandfried","followers_url":"https://api.github.com/users/samlandfried/followers","following_url":"https://api.github.com/users/samlandfried/following{/other_user}","gists_url":"https://api.github.com/users/samlandfried/gists{/gist_id}","starred_url":"https://api.github.com/users/samlandfried/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/samlandfried/subscriptions","organizations_url":"https://api.github.com/users/samlandfried/orgs","repos_url":"https://api.github.com/users/samlandfried/repos","events_url":"https://api.github.com/users/samlandfried/events{/privacy}","received_events_url":"https://api.github.com/users/samlandfried/received_events","type":"User","site_admin":false},{"login":"lukyans","id":20569018,"avatar_url":"https://avatars1.githubusercontent.com/u/20569018?v=3","gravatar_id":"","url":"https://api.github.com/users/lukyans","html_url":"https://github.com/lukyans","followers_url":"https://api.github.com/users/lukyans/followers","following_url":"https://api.github.com/users/lukyans/following{/other_user}","gists_url":"https://api.github.com/users/lukyans/gists{/gist_id}","starred_url":"https://api.github.com/users/lukyans/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/lukyans/subscriptions","organizations_url":"https://api.github.com/users/lukyans/orgs","repos_url":"https://api.github.com/users/lukyans/repos","events_url":"https://api.github.com/users/lukyans/events{/privacy}","received_events_url":"https://api.github.com/users/lukyans/received_events","type":"User","site_admin":false}]'
+    http_version: 
+  recorded_at: Thu, 11 May 2017 17:32:38 GMT
+recorded_with: VCR 3.0.3

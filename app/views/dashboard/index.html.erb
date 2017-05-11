@@ -1,0 +1,13 @@
+<h1>Dashboard</h1>
+<div class="avatar"><%= image_tag(@user.avatar_url) %></div>
+<p><%= @user.name %></p>
+<p><%= @user.login %></p>
+<p>Stars: <%= @user.starred(current_user.token).count %></p>
+Followers(<%= @user.followers(current_user.token).count %>):
+<% @user.followers(current_user.token).each do |follower| %>
+  <%= follower.login %>
+<% end %>
+Following(<%= @user.following(current_user.token).count %>):
+<% @user.following(current_user.token).each do |user| %>
+  <%= user.login %>
+<% end %>

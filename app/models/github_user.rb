@@ -17,6 +17,22 @@ class GithubUser
     new(raw_githubuser)
   end
 
+  def starred(token)
+    raw_starred = GithubService.starred(token)
+  end
+
+  def followers(token)
+    GithubService.followers(token).map(&create_github_user)
+  end
+
+  def following(token)
+    GithubService.following(token).map(&create_github_user)
+  end
+
+  def create_github_user
+    -> user { GithubUser.new(user) }
+  end
+
   private
 
   attr_reader :attrs

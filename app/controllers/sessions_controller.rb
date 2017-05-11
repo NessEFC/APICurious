@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       flash[:success] = "You are logged in as #{user.username}"
     end
-    redirect_to root_path
+    redirect_to dashboard_path
   end
 
   def destroy
