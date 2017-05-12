@@ -63,4 +63,29 @@ describe GithubUser do
       end
     end
   end
+
+  context ".repos" do
+    it "finds a user's repos" do
+      VCR.use_cassette("repos") do
+        githubuser = GithubUser.find_github_user(token)
+        repos = githubuser.repos
+
+        expect(repos).to be_an(Array)
+        expect(repos.count).to eq(39)
+        expect(repos.first.name).to eq("APICurious")
+      end
+    end
+  end
+
+  context ".orgs" do
+    it "finds a user's orgs" do
+      VCR.use_cassette("orgs") do
+        githubuser = GithubUser.find_github_user(token)
+        orgs = githubuser.orgs
+
+        expect(orgs).to be_an(Array)
+        expect(orgs.count).to eq(0)
+      end
+    end
+  end
 end

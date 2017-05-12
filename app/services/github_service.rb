@@ -5,14 +5,14 @@ class GithubService
     @token = token
   end
 
-  def github_user_by(token)
+  def github_user_by
     response = conn.get("/user", { access_token: token })
     JSON.parse(response.body, symbolize_names: true)
   end
 
   def self.github_user_by(token)
     service = GithubService.new(token)
-    service.github_user_by(token)
+    service.github_user_by
   end
 
   def starred
@@ -43,6 +43,26 @@ class GithubService
   def self.following(token)
     service = GithubService.new(token)
     service.following
+  end
+
+  def repos
+    response = conn.get("user/repos", { access_token: token, per_page: 100 })
+    JSON.parse(response.body, symbolize_names: true)
+  end
+
+  def self.repos(token)
+    service = GithubService.new(token)
+    service.repos
+  end
+
+  def orgs
+    response = conn.get("user/orgs", { access_token: token })
+    JSON.parse(response.body, symbolize_names: true)
+  end
+
+  def self.orgs(token)
+    service = GithubService.new(token)
+    service.orgs
   end
 
   private

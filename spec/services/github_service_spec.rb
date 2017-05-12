@@ -68,4 +68,26 @@ describe GithubService do
       end
     end
   end
+
+  context ".repos(token)" do
+    it "returns a user's repos" do
+      VCR.use_cassette("GithubService#repos(token)") do
+        repos = GithubService.repos(token)
+
+        expect(repos).to be_an(Array)
+        expect(repos.first).to be_a(Hash)
+        expect(repos.first[:name]).to be_a(String)
+      end
+    end
+  end
+
+  context ".orgs(token)" do
+    it "returns a user's orgs" do
+      VCR.use_cassette("GithubService#orgs(token)") do
+        orgs = GithubService.orgs(token)
+
+        expect(orgs).to be_an(Array)
+      end
+    end
+  end
 end

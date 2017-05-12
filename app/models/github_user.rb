@@ -1,9 +1,10 @@
 class GithubUser
 
-  attr_reader :login, :name, :avatar_url, :starred_url, :followers_url, :following_url
+  attr_reader :token, :login, :name, :avatar_url, :starred_url, :followers_url, :following_url
 
-  def initialize(attrs = [])
+  def initialize(attrs = {}, token)
     @attrs = attrs
+    @token = token
     @login = attrs[:login]
     @name = attrs[:name]
     @avatar_url = attrs[:avatar_url]
@@ -14,7 +15,7 @@ class GithubUser
 
   def self.find_github_user(token)
     raw_githubuser = GithubService.github_user_by(token)
-    new(raw_githubuser)
+    new(raw_githubuser, token)
   end
 
   def starred(token)
@@ -22,15 +23,23 @@ class GithubUser
   end
 
   def followers(token)
-    GithubService.followers(token).map(&create_github_user)
+    GithubService.followers(token).map(&create_github_user(token))
   end
 
   def following(token)
-    GithubService.following(token).map(&create_github_user)
+    GithubService.following(token).map(&create_github_user(token))
   end
 
-  def create_github_user
-    -> user { GithubUser.new(user) }
+  def repos
+    Repo.find_repos(token)
+  end
+
+  def orgs
+    Org.find_orgs(token)
+  end
+
+  def create_github_user(token)
+    -> user { GithubUser.new(user, token) }
   end
 
   private
