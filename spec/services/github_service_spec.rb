@@ -90,4 +90,19 @@ describe GithubService do
       end
     end
   end
+
+  context ".commits(token, login)" do
+    it "returns a user's commits" do
+      VCR.use_cassette("GithubService#commits(token, login)") do
+        login = "NessEFC"
+        commits = GithubService.commits(token, login)
+
+        expect(commits).to be_an(Array)
+        expect(commits.first).to be_a(Hash)
+        expect(commits.first[:repo][:name]).to be_a(String)
+        expect(commits.first[:payload][:commits]).to be_an(Array)
+        expect(commits.first[:payload][:commits][0][:message]).to be_a(String)
+      end
+    end
+  end
 end

@@ -38,6 +38,10 @@ class GithubUser
     Org.find_orgs(token)
   end
 
+  def commits
+    Commit.find_commits(token, login)
+  end
+
   def create_github_user(token)
     -> user { GithubUser.new(user, token) }
   end

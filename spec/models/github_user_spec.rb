@@ -88,4 +88,17 @@ describe GithubUser do
       end
     end
   end
+
+  context ".commits" do
+    it "finds a user's recent commits" do
+      VCR.use_cassette("commits") do
+        githubuser = GithubUser.find_github_user(token)
+        commits = githubuser.commits
+
+        expect(commits).to be_an(Array)
+        expect(commits.first.message).to eq("APICurious: add orgs and repos")
+        expect(commits.count).to eq(11)
+      end
+    end
+  end
 end

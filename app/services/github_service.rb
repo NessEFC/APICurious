@@ -65,6 +65,16 @@ class GithubService
     service.orgs
   end
 
+  def commits(token, login)
+    response = conn.get("/users/#{login}/events", { access_token: token })
+    JSON.parse(response.body, symbolize_names: true)
+  end
+
+  def self.commits(token, login)
+    service = GithubService.new(token)
+    service.commits(token, login)
+  end
+
   private
 
   attr_reader :token
